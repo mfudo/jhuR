@@ -30,7 +30,7 @@ best <- function(state, outcome) {
             outcome <- paste(capitalize(outcome), collapse=".")
             care <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
             filtered <- care[care$State == state,]
-            searchExp <- paste("Lower.+Mortality.+Estimate.+", outcome, sep="")
+            searchExp <- paste("^Hospital.+30.+Day.+Death.+Mortality.+Rates.+", outcome, sep="")
             colNum<- grep(searchExp, colnames(filtered))
             # Coerce the 30 day morbidity column to numeric
             filtered[,colNum] <- as.numeric(filtered[,colNum], warn=-1)
