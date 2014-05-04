@@ -1,6 +1,6 @@
 # Programming assignment Part 3
-# Find the hospital according to user specified
-# rank, outcome, and state.
+# Find the hospital for each state according to user specified
+# rank and outcome.
 
 setwd("~/jhuR/prog_3/")
 
@@ -44,7 +44,6 @@ rankall <- function(outcome, num="best") {
             # Sort by the outcome ascending and return the name of 
             # the hospital
             sorted <- filtered[order(filtered[,colNum], filtered[,2]), c(colNum, 2)]
-            
             cleaned <- na.omit(sorted)
             
             if (num == "best"){
@@ -57,12 +56,7 @@ rankall <- function(outcome, num="best") {
                 ind = num
             }
             results[nrow(results)+1,] <- c(cleaned[ind,2], as.character(st))
-            #results <- rbind(results, single)
-            rm(filtered)
-            rm(sorted)
-            rm(cleaned)
         }
-        
         names(results) <- c('hospital', 'state')
         results[order(results$state),] 
     }
